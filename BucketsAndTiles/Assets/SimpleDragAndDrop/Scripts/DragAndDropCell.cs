@@ -113,59 +113,9 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
                     DropEventDescriptor desc = new DropEventDescriptor();
                     switch (cellType)                                       // Check this cell's type
                     {
-                        case CellType.Swap:                                 // Item in destination cell can be swapped
-							UpdateMyItem();
-                            switch (sourceCell.cellType)
-                            {
-                                case CellType.Swap:                         // Item in source cell can be swapped
-                                    // Fill event descriptor
-                                    desc.item = item;
-                                    desc.sourceCell = sourceCell;
-                                    desc.destinationCell = this;
-                                    SendRequest(desc);                      // Send drop request
-                                    StartCoroutine(NotifyOnDragEnd(desc));  // Send notification after drop will be finished
-                                    if (desc.permission == true)            // If drop permitted by application
-                                    {
-										if (myDadItem != null)            // If destination cell has item
-                                        {
-                                            // Fill event descriptor
-                                            DropEventDescriptor descAutoswap = new DropEventDescriptor();
-											descAutoswap.item = myDadItem;
-                                            descAutoswap.sourceCell = this;
-                                            descAutoswap.destinationCell = sourceCell;
-                                            SendRequest(descAutoswap);                      // Send drop request
-                                            StartCoroutine(NotifyOnDragEnd(descAutoswap));  // Send notification after drop will be finished
-                                            if (descAutoswap.permission == true)            // If drop permitted by application
-                                            {
-                                                SwapItems(sourceCell, this);                // Swap items between cells
-                                            }
-                                            else
-                                            {
-												PlaceItem(item);            // Delete old item and place dropped item into this cell
-                                            }
-                                        }
-                                        else
-                                        {
-											PlaceItem(item);                // Place dropped item into this empty cell
-                                        }
-                                    }
-                                    break;
-                                default:                                    // Item in source cell can not be swapped
-                                    // Fill event descriptor
-                                    desc.item = item;
-                                    desc.sourceCell = sourceCell;
-                                    desc.destinationCell = this;
-                                    SendRequest(desc);                      // Send drop request
-                                    StartCoroutine(NotifyOnDragEnd(desc));  // Send notification after drop will be finished
-                                    if (desc.permission == true)            // If drop permitted by application
-                                    {
-										PlaceItem(item);                    // Place dropped item into this cell
-                                    }
-                                    break;
-                            }
-                            break;
                         case CellType.DropOnly:                             // Item only can be dropped into destination cell
                             // Fill event descriptor
+                            Debug.Log("HEYY Package from: "+sourceCell+"to "+this);
                             desc.item = item;
                             desc.sourceCell = sourceCell;
                             desc.destinationCell = this;
@@ -237,7 +187,7 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
 			desc.item = myDadItem;
             desc.sourceCell = this;
             desc.destinationCell = this;
-            SendNotification(desc);                                         // Notify application about item destruction
+            //SendNotification(desc);                                         // Notify application about item destruction
 			if (myDadItem != null)
 			{
 				Destroy(myDadItem.gameObject);

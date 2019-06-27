@@ -17,31 +17,38 @@ public class DummyControlUnit : MonoBehaviour
         DummyControlUnit sourceSheet = desc.sourceCell.GetComponentInParent<DummyControlUnit>();
         // Get control unit of destination cell
         DummyControlUnit destinationSheet = desc.destinationCell.GetComponentInParent<DummyControlUnit>();
-        switch (desc.triggerType)                                               // What type event is?
+        //switch (desc.triggerType)                                               // What type event is?
+        //{
+        //    case DragAndDropCell.TriggerType.DropRequest:                       // Request for item drag (note: do not destroy item on request)
+        //        Debug.Log("Request " + desc.item.name + " from " + sourceSheet.name + " to " + destinationSheet.name);
+        //        break;
+        //    case DragAndDropCell.TriggerType.DropEventEnd:                      // Drop event completed (successful or not)
+        //        if (desc.permission == true)                                    // If drop successful (was permitted before)
+        //        {
+        //            Debug.Log("Successful drop " + desc.item.name + " from " + sourceSheet.name + " to " + destinationSheet.name);
+        //        }
+        //        else                                                            // If drop unsuccessful (was denied before)
+        //        {
+        //            Debug.Log("Denied drop " + desc.item.name + " from " + sourceSheet.name + " to " + destinationSheet.name);
+        //        }
+        //        break;
+        //    case DragAndDropCell.TriggerType.ItemAdded:                         // New item is added from application
+        //        Debug.Log("Item " + desc.item.name + " added into " + destinationSheet.name);
+        //        break;
+        //    case DragAndDropCell.TriggerType.ItemWillBeDestroyed:               // Called before item be destructed (can not be canceled)
+        //        Debug.Log("Item " + desc.item.name + " will be destroyed from " + sourceSheet.name);
+        //        break;
+        //    default:
+        //        Debug.Log("Unknown drag and drop event");
+        //        break;
+        //}
+
+        if (desc.triggerType == DragAndDropCell.TriggerType.DropEventEnd)
         {
-            case DragAndDropCell.TriggerType.DropRequest:                       // Request for item drag (note: do not destroy item on request)
-                Debug.Log("Request " + desc.item.name + " from " + sourceSheet.name + " to " + destinationSheet.name);
-                break;
-            case DragAndDropCell.TriggerType.DropEventEnd:                      // Drop event completed (successful or not)
-                if (desc.permission == true)                                    // If drop successful (was permitted before)
-                {
-                    Debug.Log("Successful drop " + desc.item.name + " from " + sourceSheet.name + " to " + destinationSheet.name);
-                }
-                else                                                            // If drop unsuccessful (was denied before)
-                {
-                    Debug.Log("Denied drop " + desc.item.name + " from " + sourceSheet.name + " to " + destinationSheet.name);
-                }
-                break;
-            case DragAndDropCell.TriggerType.ItemAdded:                         // New item is added from application
-                Debug.Log("Item " + desc.item.name + " added into " + destinationSheet.name);
-                break;
-            case DragAndDropCell.TriggerType.ItemWillBeDestroyed:               // Called before item be destructed (can not be canceled)
-                Debug.Log("Item " + desc.item.name + " will be destroyed from " + sourceSheet.name);
-                break;
-            default:
-                Debug.Log("Unknown drag and drop event");
-                break;
+            //Debug.Log("Lemme just destroy things");
+            //desc.destinationCell.RemoveItem();
         }
+
     }
 
     /// <summary>
