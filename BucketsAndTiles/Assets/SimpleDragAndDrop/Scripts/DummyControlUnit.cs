@@ -82,15 +82,13 @@ public class DummyControlUnit : MonoBehaviour
             //{
             //    Debug.Log("Key: " + key.ToCharArray);
             //}
+            string destinationCellName = desc.destinationCell.ToString().Split(' ')[0];
+            string sourceCellName = desc.sourceCell.ToString().Split(' ')[0];
 
-            string namee = desc.destinationCell.ToString();
-
-            Debug.Log("Destiantion cell type: " + namee.Length);
-
-            if (tilesToBucketMapping.ContainsKey(namee))
+            if (tilesToBucketMapping.ContainsKey(destinationCellName))
             {
                 Debug.Log("In the dict");
-                if (tilesToBucketMapping[desc.destinationCell.ToString()].Contains(desc.sourceCell.ToString()))
+                if (tilesToBucketMapping[destinationCellName].Contains(sourceCellName))
                 {
                     Debug.Log("Correct match");
                     score += 1;
