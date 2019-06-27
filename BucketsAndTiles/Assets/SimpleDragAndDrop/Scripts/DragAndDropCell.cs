@@ -115,7 +115,7 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
                     {
                         case CellType.DropOnly:                             // Item only can be dropped into destination cell
                             // Fill event descriptor
-                            Debug.Log("HEYY Package from: "+sourceCell+"to "+this);
+                            //Debug.Log("HEYY Package from: "+sourceCell+"to "+this);
                             desc.item = item;
                             desc.sourceCell = sourceCell;
                             desc.destinationCell = this;
@@ -222,7 +222,7 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
         {
             desc.triggerType = TriggerType.DropRequest;
             desc.permission = true;
-            SendNotification(desc);
+            //SendNotification(desc);
             result = desc.permission;
         }
         return result;
@@ -289,7 +289,7 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
             desc.item = newItem;
             desc.sourceCell = this;
             desc.destinationCell = this;
-            SendNotification(desc);
+            //SendNotification(desc);
         }
     }
 

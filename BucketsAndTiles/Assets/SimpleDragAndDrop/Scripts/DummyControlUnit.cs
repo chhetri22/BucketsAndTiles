@@ -1,12 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.IO;
+using System.Collections.Generic;
 
 /// <summary>
 /// Example of control application for drag and drop events handle
 /// </summary>
 public class DummyControlUnit : MonoBehaviour
 {
+    private Dictionary<string, List<string>> tilesToBucketMapping = new Dictionary<string, List<string>>();
+    private static string path = "/Users/abishkarchhetri/code/work/OLENepal/BucketsAndTiles/data/mapping.csv";
+    private static int score = 0;
+
+    public DummyControlUnit()
+    {
+        using (var reader = new StreamReader(@path))
+        {
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                var values = line.Split(',');
+                if (tilesToBucketMapping.ContainsKey(values[1]))
+                {
+                    tilesToBucketMapping[values[1]].Add(values[0]);
+                }
+                else
+                {
+                    tilesToBucketMapping[values[1]] = new List<string>();
+                    tilesToBucketMapping[values[1]].Add(values[0]);
+                }
+            }
+        }
+    }
+
+
     /// <summary>
     /// Operate all drag and drop requests and events from children cells
     /// </summary>
@@ -47,6 +75,32 @@ public class DummyControlUnit : MonoBehaviour
         {
             //Debug.Log("Lemme just destroy things");
             //desc.destinationCell.RemoveItem();
+            Debug.Log("Request " + desc.item.name + " from " + sourceSheet.name + " to " + destinationSheet.name);
+            Debug.Log("HEYY Package from: " + desc.sourceCell + "to " + desc.destinationCell);
+
+            //foreach (string key in tilesToBucketMapping.Keys)
+            //{
+            //    Debug.Log("Key: " + key.ToCharArray);
+            //}
+
+            string namee = desc.destinationCell.ToString();
+
+            Debug.Log("Destiantion cell type: " + namee.Length);
+
+            if (tilesToBucketMapping.ContainsKey(namee))
+            {
+                Debug.Log("In the dict");
+                if (tilesToBucketMapping[desc.destinationCell.ToString()].Contains(desc.sourceCell.ToString()))
+                {
+                    Debug.Log("Correct match");
+                    score += 1;
+                } else
+                {
+                    Debug.Log("Incorrect match");
+                    score -= 1;
+                }
+            }
+            Debug.Log("Your score is: " + score);
         }
 
     }
