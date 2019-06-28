@@ -37,7 +37,7 @@ public class DummyControlUnit : MonoBehaviour
 
     void Start() {
         // GameObject g3 = (GameObject)(Instantiate (cell, transform.position, Quaternion.identity));
-        var foundObjects = FindObjectsOfType<Cell>();
+        // var foundObjects = FindObjectsOfType<Cell>();
     }
 
 
