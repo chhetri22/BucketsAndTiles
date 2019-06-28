@@ -10,6 +10,7 @@ using System.Collections.Generic;
 public class DummyControlUnit : MonoBehaviour
 {
     private Dictionary<string, List<string>> tilesToBucketMapping = new Dictionary<string, List<string>>();
+    public GameObject cell;
     private static string path = "/Users/abishkarchhetri/code/work/OLENepal/BucketsAndTiles/data/mapping.csv";
     //private static int score = 0;
 
@@ -32,6 +33,10 @@ public class DummyControlUnit : MonoBehaviour
                 }
             }
         }
+    }
+
+    void Start() {
+        // GameObject g3 = (GameObject)(Instantiate (cell, transform.position, Quaternion.identity));
     }
 
 
@@ -99,6 +104,7 @@ public class DummyControlUnit : MonoBehaviour
                 }
             }
             Debug.Log("Your score is: " + ScoreScript.scoreValue);
+            Debug.Log("Your item is: " + desc.item.name);
         }
 
     }
