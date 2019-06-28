@@ -11,7 +11,7 @@ public class DummyControlUnit : MonoBehaviour
 {
     private Dictionary<string, List<string>> tilesToBucketMapping = new Dictionary<string, List<string>>();
     private static string path = "/Users/abishkarchhetri/code/work/OLENepal/BucketsAndTiles/data/mapping.csv";
-    private static int score = 0;
+    //private static int score = 0;
 
     public DummyControlUnit()
     {
@@ -91,14 +91,14 @@ public class DummyControlUnit : MonoBehaviour
                 if (tilesToBucketMapping[destinationCellName].Contains(sourceCellName))
                 {
                     Debug.Log("Correct match");
-                    score += 1;
+                    ScoreScript.scoreValue += 1;
                 } else
                 {
                     Debug.Log("Incorrect match");
-                    score -= 1;
+                    ScoreScript.scoreValue -= 1;
                 }
             }
-            Debug.Log("Your score is: " + score);
+            Debug.Log("Your score is: " + ScoreScript.scoreValue);
         }
 
     }
