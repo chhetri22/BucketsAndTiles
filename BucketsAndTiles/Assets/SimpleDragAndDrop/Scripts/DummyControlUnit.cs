@@ -9,9 +9,9 @@ using System.Collections.Generic;
 /// </summary>
 public class DummyControlUnit : MonoBehaviour
 {
-    private Dictionary<string, List<string>> tilesToBucketMapping = new Dictionary<string, List<string>>();
+    public static Dictionary<string, List<string>> tilesToBucketMapping = new Dictionary<string, List<string>>();
     public GameObject cell;
-    private static string path = "/Users/abishkarchhetri/code/work/OLENepal/BucketsAndTiles/data/mapping.csv";
+    private static string path = "Assets/TilesAndBuckets/data/mapping.csv";
     //private static int score = 0;
 
     public DummyControlUnit()
@@ -98,6 +98,8 @@ public class DummyControlUnit : MonoBehaviour
             //}
             string destinationCellName = desc.destinationCell.ToString().Split(' ')[0];
             string sourceCellName = desc.sourceCell.ToString().Split(' ')[0];
+
+            Debug.Log(destinationCellName);
 
             if (tilesToBucketMapping.ContainsKey(destinationCellName))
             {
