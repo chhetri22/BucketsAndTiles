@@ -11,7 +11,7 @@ public class BucketGeneration : MonoBehaviour
     {
         var bucketTemplate = GameObject.Find("bucketTemplate");
         var gridLayoutGroup = GetComponent<GridLayoutGroup>();
-        Dictionary<string, List<string>> tilesToBucketMapping = DummyControlUnit.tilesToBucketMapping;
+        Dictionary<string, List<string>> tilesToBucketMapping = DummyControlUnit.bucketToTilesMapping;
         Dictionary<string, List<string>>.KeyCollection keys = tilesToBucketMapping.Keys;
         foreach (string key in keys) {
             GameObject newBucket;

@@ -9,27 +9,50 @@ using System.Collections.Generic;
 /// </summary>
 public class DummyControlUnit : MonoBehaviour
 {
-    public static Dictionary<string, List<string>> tilesToBucketMapping = new Dictionary<string, List<string>>();
+    public static Dictionary<string, List<string>> bucketToTilesMapping = new Dictionary<string, List<string>>();
+
+    //adding variable score Functionality
+    private Dictionary<string, string> bucketToScoreMapping = new Dictionary<string, string>();
+
+    private Dictionary<int, string> indexToTile = new Dictionary<int, string>();
     public GameObject cell;
     private static string path = "Assets/TilesAndBuckets/data/mapping.csv";
+    private static string pathMeghana2 = "Assets/TilesAndBuckets/data/mappingMatrixFormat.csv";
     //private static int score = 0;
+
+    
 
     public DummyControlUnit()
     {
-        using (var reader = new StreamReader(@path))
+        using (var reader = new StreamReader(@pathMeghana2))
         {
+            List<string[]> lines = new List<string[]>();
             while (!reader.EndOfStream)
             {
-                var line = reader.ReadLine();
-                var values = line.Split(',');
-                if (tilesToBucketMapping.ContainsKey(values[1]))
+                string line = reader.ReadLine();
+                lines.Add(line.Split(','));
+
+            }
+
+            string[][] values = lines.ToArray();
+  
+            for(int i = 2; i<values[0].Length; i++)
+            {
+                indexToTile[i] = values[0][i];
+            }
+
+            for(int j = 1;j<values.Length; j++)
+            {
+                bucketToTilesMapping[values[j][0]] = new List<string>();
+                bucketToScoreMapping[values[j][0]] = values[j][1];
+
+                for (int k = 2; k<values[0].Length;k++)
                 {
-                    tilesToBucketMapping[values[1]].Add(values[0]);
-                }
-                else
-                {
-                    tilesToBucketMapping[values[1]] = new List<string>();
-                    tilesToBucketMapping[values[1]].Add(values[0]);
+                    if(values[j][k].Equals("1"))
+                    {
+                        bucketToTilesMapping[values[j][0]].Add(indexToTile[k]);
+                        Debug.Log("yeehaw");
+                    }
                 }
             }
         }
@@ -101,13 +124,13 @@ public class DummyControlUnit : MonoBehaviour
 
             Debug.Log(destinationCellName);
 
-            if (tilesToBucketMapping.ContainsKey(destinationCellName))
+            if (bucketToTilesMapping.ContainsKey(destinationCellName))
             {
-                Debug.Log("In the dict");
-                if (tilesToBucketMapping[destinationCellName].Contains(sourceCellName))
+
+                if (bucketToTilesMapping[destinationCellName].Contains(sourceCellName))
                 {
                     Debug.Log("Correct match");
-                    ScoreScript.scoreValue += 1;
+                    ScoreScript.scoreValue += int.Parse(bucketToScoreMapping[destinationCellName]);
                 } else
                 {
                     Debug.Log("Incorrect match");
