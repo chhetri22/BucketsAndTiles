@@ -81,7 +81,6 @@ public class DummyControlUnit : MonoBehaviour
             string destinationCellName = desc.destinationCell.ToString().Split(' ')[0];
             string sourceCellName = desc.sourceCell.ToString().Split(' ')[0];
 
-
             if (bucketToTilesMapping.ContainsKey(destinationCellName))
             {
 

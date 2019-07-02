@@ -120,6 +120,7 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
                             desc.sourceCell = sourceCell;
                             desc.destinationCell = this;
                             SendRequest(desc);                              // Send drop request
+                            FindObjectOfType<AudioManager>().Play("tileInBucket");
                             StartCoroutine(NotifyOnDragEnd(desc));          // Send notification after drop will be finished
                             if (desc.permission == true)                    // If drop permitted by application
                             {
