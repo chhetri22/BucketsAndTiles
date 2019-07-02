@@ -20,7 +20,7 @@ public class BucketGeneration : MonoBehaviour
             newBucket.name = key;
 
             Text someText = newBucket.transform.GetChild(1).GetComponent<Text>();
-            someText.text = key;
+            someText.text = key + " ("+DummyControlUnit.bucketToScoreMapping[key]+")";
         }
         bucketTemplate.SetActive(false);
     }

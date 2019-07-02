@@ -12,7 +12,7 @@ public class DummyControlUnit : MonoBehaviour
     public static Dictionary<string, List<string>> bucketToTilesMapping = new Dictionary<string, List<string>>();
 
     //adding variable score Functionality
-    private Dictionary<string, string> bucketToScoreMapping = new Dictionary<string, string>();
+    public static Dictionary<string, string> bucketToScoreMapping = new Dictionary<string, string>();
 
     private Dictionary<int, string> indexToTile = new Dictionary<int, string>();
     public GameObject cell;
