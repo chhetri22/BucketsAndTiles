@@ -16,31 +16,37 @@ public class BucketGeneration : MonoBehaviour
         return newObject;
     }
 
+    GameObject findGameObject(string name) {
+        return GameObject.Find(name);
+    }
+
     void Start()
     {
-        var bucketTemplate = GameObject.Find("bucketTemplate");
-        var buttonTemplate = GameObject.Find("TopicChoiceButton");
-        var panel = GameObject.Find("Panel");
-        var gridLayoutGroup = GetComponent<GridLayoutGroup>();
+        var bucketTemplate = findGameObject("bucketTemplate");
+        var buttonTemplate = findGameObject("TopicChoiceButton");
+        var panel = findGameObject("TopicPanel");
+        var bucketGrid = findGameObject("BucketGrid");
         Dictionary<string, List<string>>.KeyCollection allTopics = DummyControlUnit.topicsToTilesMapping.Keys;
+
         for (int i = 0; i<4; i++) {
             //create a new bucket
-            GameObject newBucket = createObject(bucketTemplate, gridLayoutGroup.transform, "bucket"+i);
+            GameObject newBucket = createObject(bucketTemplate, bucketGrid.transform, "bucket"+i);
             //change the label
             Text someText = newBucket.transform.Find("labelTemplate").GetComponent<Text>();
             someText.text = "Choose One";
 
-            foreach (string topic in allTopics) {
-                var newPanel = newBucket.transform.Find("SelectButton").transform.Find("Panel");
-                GameObject newButton = createObject(buttonTemplate, newPanel.transform, topic+"Button");
+            //turn off the template button
+            var newPanel = newBucket.transform.Find("SelectButton").transform.Find("TopicPanel");
+            newPanel.transform.Find("TopicChoiceButton").gameObject.SetActive(false);
 
-                Text choiceText = newButton.transform.Find("Topic").GetComponent<Text>();
+            foreach (string topic in allTopics) {
+                GameObject newButton = createObject(buttonTemplate, newPanel.transform, topic+"Button");
+                Text choiceText = newButton.transform.Find("TopicText").GetComponent<Text>();
                 choiceText.text = topic;
             }
 
-
-            //disable the choice buttons initially
-            GameObject choice = newBucket.transform.Find("SelectButton").transform.Find("Panel").gameObject;
+            //disable the initial choice buttons
+            GameObject choice = newBucket.transform.Find("SelectButton").transform.Find("TopicPanel").gameObject;
             choice.SetActive(false);
         }
         bucketTemplate.SetActive(false);
