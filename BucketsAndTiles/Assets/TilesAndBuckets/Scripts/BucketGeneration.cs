@@ -25,15 +25,16 @@ public class BucketGeneration : MonoBehaviour
         Dictionary<string, List<string>>.KeyCollection allTopics = DummyControlUnit.topicsToTilesMapping.Keys;
         for (int i = 0; i<4; i++) {
             //create a new bucket
-            GameObject newBucket = createObject(bucketTemplate, gridLayoutGroup.transform, "bucket");
+            GameObject newBucket = createObject(bucketTemplate, gridLayoutGroup.transform, "bucket"+i);
             //change the label
             Text someText = newBucket.transform.Find("labelTemplate").GetComponent<Text>();
             someText.text = "Choose One";
 
             foreach (string topic in allTopics) {
-                GameObject newButton = createObject(buttonTemplate, panel.transform, topic+"Button");
+                var newPanel = newBucket.transform.Find("SelectButton").transform.Find("Panel");
+                GameObject newButton = createObject(buttonTemplate, newPanel.transform, topic+"Button");
 
-                Text choiceText = newButton.transform.Find("TopicChoice").GetComponent<Text>();
+                Text choiceText = newButton.transform.Find("Topic").GetComponent<Text>();
                 choiceText.text = topic;
             }
 
