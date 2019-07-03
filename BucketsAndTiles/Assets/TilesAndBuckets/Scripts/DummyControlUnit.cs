@@ -18,15 +18,18 @@ public class DummyControlUnit : MonoBehaviour
 
 
     private Dictionary<int, string> indexToTile = new Dictionary<int, string>();
-    public GameObject cell;
+    public string fileName;
 
     private static string pathMeghana2 = "Assets/TilesAndBuckets/data/mappingMatrixFormat.csv";
 
     
 
-    public DummyControlUnit()
+    void Start()
     {
-        using (var reader = new StreamReader(@pathMeghana2))
+        var path1 = "Assets/TilesAndBuckets/data/"+fileName;
+        Debug.Log(fileName);
+        Debug.Log(path1);
+        using (var reader = new StreamReader(@path1))
         {
             List<string[]> lines = new List<string[]>();
             while (!reader.EndOfStream)
@@ -59,8 +62,8 @@ public class DummyControlUnit : MonoBehaviour
         }
     }
 
-    void Start() {
-    }
+    // void Start() {
+    // }
 
 
     /// <summary>
