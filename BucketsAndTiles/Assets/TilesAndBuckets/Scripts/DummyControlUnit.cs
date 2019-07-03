@@ -11,10 +11,11 @@ using System.Collections.Generic;
 public class DummyControlUnit : MonoBehaviour
 {
     //this dict stores correct answers for each bucket
-    public static Dictionary<string, List<string>> bucketToTilesMapping = new Dictionary<string, List<string>>();
+    public static Dictionary<string, List<string>> topicsToTilesMapping = new Dictionary<string, List<string>>();
 
     //adding variable score functionality
     public static Dictionary<string, string> bucketToScoreMapping = new Dictionary<string, string>();
+    public static Dictionary<string, string> bucketToTopicMapping = new Dictionary<string, string>();
 
 
     private Dictionary<int, string> indexToTile = new Dictionary<int, string>();
@@ -48,14 +49,14 @@ public class DummyControlUnit : MonoBehaviour
 
             for(int j = 1;j<values.Length; j++)
             {
-                bucketToTilesMapping[values[j][0]] = new List<string>();
+                topicsToTilesMapping[values[j][0]] = new List<string>();
                 bucketToScoreMapping[values[j][0]] = values[j][1];
 
                 for (int k = 2; k<values[0].Length;k++)
                 {
                     if(values[j][k].Equals("1"))
                     {
-                        bucketToTilesMapping[values[j][0]].Add(indexToTile[k]);
+                        topicsToTilesMapping[values[j][0]].Add(indexToTile[k]);
                     }
                 }
             }
@@ -84,10 +85,10 @@ public class DummyControlUnit : MonoBehaviour
             string destinationCellName = desc.destinationCell.ToString().Split(' ')[0];
             string sourceCellName = desc.sourceCell.ToString().Split(' ')[0];
 
-            if (bucketToTilesMapping.ContainsKey(destinationCellName))
+            if (topicsToTilesMapping.ContainsKey(destinationCellName))
             {
 
-                if (bucketToTilesMapping[destinationCellName].Contains(sourceCellName))
+                if (topicsToTilesMapping[destinationCellName].Contains(sourceCellName))
                 {
                     Debug.Log("Correct match");
                     ScoreScript.scoreValue += int.Parse(bucketToScoreMapping[destinationCellName]);

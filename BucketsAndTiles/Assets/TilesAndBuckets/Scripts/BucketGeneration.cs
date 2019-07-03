@@ -7,22 +7,43 @@ public class BucketGeneration : MonoBehaviour
 {
     //public string folderName;
     // Start is called before the first frame update
+
+    GameObject createObject(GameObject template, Transform parent, string name) {
+        GameObject newObject;
+        newObject = Instantiate(template);            
+        newObject.transform.SetParent(parent);
+        newObject.name = name;
+        return newObject;
+    }
+
     void Start()
     {
         var bucketTemplate = GameObject.Find("bucketTemplate");
+        var buttonTemplate = GameObject.Find("TopicChoiceButton");
+        var panel = GameObject.Find("Panel");
         var gridLayoutGroup = GetComponent<GridLayoutGroup>();
-        Dictionary<string, List<string>> tilesToBucketMapping = DummyControlUnit.bucketToTilesMapping;
-        Dictionary<string, List<string>>.KeyCollection keys = tilesToBucketMapping.Keys;
-        foreach (string key in keys) {
-            GameObject newBucket;
-            newBucket = Instantiate(bucketTemplate);            
-            newBucket.transform.SetParent(gridLayoutGroup.transform);
-            newBucket.name = key;
+        Dictionary<string, List<string>>.KeyCollection allTopics = DummyControlUnit.topicsToTilesMapping.Keys;
+        for (int i = 0; i<4; i++) {
+            //create a new bucket
+            GameObject newBucket = createObject(bucketTemplate, gridLayoutGroup.transform, "bucket");
+            //change the label
+            Text someText = newBucket.transform.Find("labelTemplate").GetComponent<Text>();
+            someText.text = "Choose One";
 
-            Text someText = newBucket.transform.GetChild(1).GetComponent<Text>();
-            someText.text = key + " ("+DummyControlUnit.bucketToScoreMapping[key]+")";
+            foreach (string topic in allTopics) {
+                GameObject newButton = createObject(buttonTemplate, panel.transform, topic+"Button");
+
+                Text choiceText = newButton.transform.Find("TopicChoice").GetComponent<Text>();
+                choiceText.text = topic;
+            }
+
+
+            //disable the choice buttons initially
+            GameObject choice = newBucket.transform.Find("SelectButton").transform.Find("Panel").gameObject;
+            choice.SetActive(false);
         }
         bucketTemplate.SetActive(false);
+        buttonTemplate.SetActive(false);
     }
 
     // Update is called once per frame
