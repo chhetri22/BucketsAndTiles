@@ -29,40 +29,45 @@ public class DummyControlUnit : MonoBehaviour
     void Start()
     {
         var path1 = "Assets/TilesAndBuckets/data/"+fileName;
-        Debug.Log(fileName);
-        Debug.Log(path1);
-        using (var reader = new StreamReader(@path1))
+
+        Object[] x1 = Resources.LoadAll("another", typeof(TextAsset));
+
+        TextAsset SourceFile = (TextAsset)Resources.Load("another/animals", typeof(TextAsset));
+        string textContent = SourceFile.text;
+        List<string[]> listLines = new List<string[]>();
+
+        string[] lines = textContent.Split('\n');
+
+        foreach (string line in lines) {
+            if (line != ""){
+                listLines.Add(line.Split(','));
+            }
+        }
+
+        string[][] values = listLines.ToArray();
+
+        for(int i = 2; i<values[0].Length; i++)
         {
-            List<string[]> lines = new List<string[]>();
-            while (!reader.EndOfStream)
+            indexToTile[i] = values[0][i];
+        }
+
+        for(int j = 1;j<values.Length; j++)
+        {
+            topicsToTilesMapping[values[j][0]] = new List<string>();
+            bucketToScoreMapping[values[j][0]] = values[j][1];
+            bucketToOccupancyMapping[values[j][0]] = 0;
+
+            for (int k = 2; k<values[0].Length;k++)
             {
-                string line = reader.ReadLine();
-                lines.Add(line.Split(','));
-
-            }
-
-            string[][] values = lines.ToArray();
-  
-            for(int i = 2; i<values[0].Length; i++)
-            {
-                indexToTile[i] = values[0][i];
-            }
-
-            for(int j = 1;j<values.Length; j++)
-            {
-                topicsToTilesMapping[values[j][0]] = new List<string>();
-                bucketToScoreMapping[values[j][0]] = values[j][1];
-                bucketToOccupancyMapping[values[j][0]] = 0;
-
-                for (int k = 2; k<values[0].Length;k++)
+                if(values[j][k].Equals("1"))
                 {
-                    if(values[j][k].Equals("1"))
-                    {
-                        topicsToTilesMapping[values[j][0]].Add(indexToTile[k]);
-                    }
+                    topicsToTilesMapping[values[j][0]].Add(indexToTile[k]);
                 }
             }
         }
+
+    
+
     }
 
     // void Start() {
