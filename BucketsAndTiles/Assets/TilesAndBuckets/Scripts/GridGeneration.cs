@@ -19,7 +19,7 @@ public class GridGeneration : MonoBehaviour
 
             Image imageComponent = newTile.transform.GetChild(0).GetComponent<Image>();
             imageComponent.sprite = (Sprite)sprites[i];
-            var name = sprites[i].ToString().Substring(0,2);
+            var name = sprites[i].ToString().Split(' ')[0];
             newTile.transform.GetChild(0).name = "img_"+name;
             newTile.name = name;
         }
