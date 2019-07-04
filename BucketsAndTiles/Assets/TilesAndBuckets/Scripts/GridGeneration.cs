@@ -12,8 +12,6 @@ public class GridGeneration : MonoBehaviour
         var tileTemplate = GameObject.Find("tileTemplate");
         var gridLayoutGroup = GetComponent<GridLayoutGroup>();
         object[] sprites = Resources.LoadAll(folderName, typeof(Sprite));
-        Debug.Log(sprites.Length);
-        Debug.Log(sprites);
         for (int i = 0; i < sprites.Length; i++) {
             GameObject newTile;
             newTile = Instantiate(tileTemplate);            
