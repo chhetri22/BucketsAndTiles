@@ -116,6 +116,13 @@ public class DragAndDropCell : MonoBehaviour, IDropHandler
                         case CellType.DropOnly:                             // Item only can be dropped into destination cell
                             // Fill event descriptor
                             //Debug.Log("HEYY Package from: "+sourceCell+"to "+this);
+
+                            Text labelText = this.transform.Find("labelTemplate").GetComponent<Text>();
+
+                            if (labelText.text == "Choose One") {
+                                break;
+                            }
+
                             desc.item = item;
                             desc.sourceCell = sourceCell;
                             desc.destinationCell = this;
