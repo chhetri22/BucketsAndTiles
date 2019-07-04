@@ -17,6 +17,7 @@ public class DummyControlUnit : MonoBehaviour
     public static Dictionary<string, string> bucketToScoreMapping = new Dictionary<string, string>();
     public static Dictionary<string, string> bucketToTopicMapping = new Dictionary<string, string>();
 
+    public static Dictionary<string, int> bucketToOccupancyMapping = new Dictionary<string, int>();
 
     private Dictionary<int, string> indexToTile = new Dictionary<int, string>();
     public string fileName;
@@ -51,6 +52,7 @@ public class DummyControlUnit : MonoBehaviour
             {
                 topicsToTilesMapping[values[j][0]] = new List<string>();
                 bucketToScoreMapping[values[j][0]] = values[j][1];
+                bucketToOccupancyMapping[values[j][0]] = 0;
 
                 for (int k = 2; k<values[0].Length;k++)
                 {
@@ -97,6 +99,18 @@ public class DummyControlUnit : MonoBehaviour
                     Debug.Log("Incorrect match");
                     ScoreScript.scoreValue -= 1;
                 }
+            }
+
+            var destBucket = desc.destinationCell.gameObject;
+            var gameObjectToDestroy = destBucket.transform.Find("img_"+sourceCellName);
+            Destroy(gameObjectToDestroy.gameObject);
+
+            if (bucketToOccupancyMapping[destinationCellName] < 5) {
+                bucketToOccupancyMapping[destinationCellName] += 1;
+                //increase the level fill of the bucket
+                object[] sprites = Resources.LoadAll("bucket/incremental", typeof(Sprite));
+                Image imageComponent = destBucket.transform.GetChild(0).GetComponent<Image>();
+                imageComponent.sprite = (Sprite)sprites[bucketToOccupancyMapping[destinationCellName]];
             }
         }
 
