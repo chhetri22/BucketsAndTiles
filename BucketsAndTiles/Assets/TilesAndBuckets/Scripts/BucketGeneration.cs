@@ -42,7 +42,7 @@ public class BucketGeneration : MonoBehaviour
             foreach (string topic in allTopics) {
                 GameObject newButton = createObject(buttonTemplate, newPanel.transform, topic+"Button");
                 Text choiceText = newButton.transform.Find("TopicText").GetComponent<Text>();
-                choiceText.text = topic;
+                choiceText.text = topic+" ("+DummyControlUnit.bucketToScoreMapping[topic]+")";
             }
 
             //disable the initial choice buttons

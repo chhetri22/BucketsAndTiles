@@ -9,6 +9,7 @@ public class TopicChoiceManager : MonoBehaviour
 {
     public void PickTopic() {
         string chosenText = this.gameObject.transform.Find("TopicText").GetComponent<Text>().text;
+        string chosenTopic = chosenText.Split(' ')[0];
         
         // var panel = this.gameObject.transform.parent;
         // var SelectButton = panel.gameObject.transform.parent;
@@ -22,16 +23,16 @@ public class TopicChoiceManager : MonoBehaviour
         // gameObject.transform.Find("labelTemplate").GetComponent<Text>().text = chosenText.text;
 
         //change the name of the bucket to the chosen name
-        gameObject.name = chosenText;
+        gameObject.name = chosenTopic;
 
         //remove this option from other buckets
         foreach(Transform child in bucket.transform.parent)
         {
             Debug.Log(child.name);
-            if (child.name != chosenText && child.name != "bucketTemplate"){
+            if (child.name != chosenTopic && child.name != "bucketTemplate"){
                 var newPanel = child.transform.Find("SelectButton").transform.Find("TopicPanel");
                 if (newPanel) {
-                    var buttonToDisable = newPanel.transform.Find(chosenText+"Button");
+                    var buttonToDisable = newPanel.transform.Find(chosenTopic+"Button");
                     buttonToDisable.gameObject.SetActive(false);
                 }
 
