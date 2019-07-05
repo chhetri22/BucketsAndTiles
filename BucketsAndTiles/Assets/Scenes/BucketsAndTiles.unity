@@ -1290,8 +1290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488c541577b33e64dba4c8edaa2534c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: animals
-  graphicsFolderName: animalPics
+  fileName: numbers
+  graphicsFolderName: numbersPics
 --- !u!1001 &865732064
 PrefabInstance:
   m_ObjectHideFlags: 0

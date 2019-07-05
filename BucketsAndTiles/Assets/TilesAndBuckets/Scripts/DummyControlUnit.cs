@@ -35,7 +35,7 @@ public class DummyControlUnit : MonoBehaviour
 
         Object[] x1 = Resources.LoadAll("another", typeof(TextAsset));
 
-        TextAsset SourceFile = (TextAsset)Resources.Load("another/"+fileName, typeof(TextAsset));
+        TextAsset SourceFile = (TextAsset)Resources.Load("CSVFiles/"+fileName, typeof(TextAsset));
         string textContent = SourceFile.text;
         List<string[]> listLines = new List<string[]>();
 
