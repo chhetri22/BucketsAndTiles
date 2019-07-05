@@ -26,8 +26,7 @@ public class DummyControlUnit : MonoBehaviour
 
     public string fileName;
 
-    private static string pathMeghana2 = "Assets/TilesAndBuckets/data/mappingMatrixFormat.csv";
-
+    public string graphicsFolderName;
     
 
     void Start()
@@ -36,7 +35,7 @@ public class DummyControlUnit : MonoBehaviour
 
         Object[] x1 = Resources.LoadAll("another", typeof(TextAsset));
 
-        TextAsset SourceFile = (TextAsset)Resources.Load("another/animals", typeof(TextAsset));
+        TextAsset SourceFile = (TextAsset)Resources.Load("another/"+fileName, typeof(TextAsset));
         string textContent = SourceFile.text;
         List<string[]> listLines = new List<string[]>();
 
@@ -69,11 +68,7 @@ public class DummyControlUnit : MonoBehaviour
                 }
             }
         }
-
-    
-
     }
-
     // void Start() {
     // }
 

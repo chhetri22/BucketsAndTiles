@@ -1290,7 +1290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488c541577b33e64dba4c8edaa2534c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: animals.csv
+  fileName: animals
+  graphicsFolderName: animalPics
 --- !u!1001 &865732064
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2931,4 +2932,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd5f9c694a264167a92bbf4a7330a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  folderName: animalPics
+  dummyControlUnit: {fileID: 797955550}
