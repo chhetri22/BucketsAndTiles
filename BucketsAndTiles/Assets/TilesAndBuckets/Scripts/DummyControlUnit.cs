@@ -20,6 +20,10 @@ public class DummyControlUnit : MonoBehaviour
     public static Dictionary<string, int> bucketToOccupancyMapping = new Dictionary<string, int>();
 
     private Dictionary<int, string> indexToTile = new Dictionary<int, string>();
+
+    //values holds the mapping array; defined outside and public bc FinalScore uses it
+    public static string[][] values = null;
+
     public string fileName;
 
     private static string pathMeghana2 = "Assets/TilesAndBuckets/data/mappingMatrixFormat.csv";
@@ -44,7 +48,7 @@ public class DummyControlUnit : MonoBehaviour
             }
         }
 
-        string[][] values = listLines.ToArray();
+        values = listLines.ToArray();
 
         for(int i = 2; i<values[0].Length; i++)
         {
