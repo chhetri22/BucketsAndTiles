@@ -105,8 +105,10 @@ public class DummyControlUnit : MonoBehaviour
                     ScoreScript.scoreValue += int.Parse(bucketToScoreMapping[destinationCellName]);
                 } else
                 {
+                    Debug.Log(ScoreScript.scoreValue);
                     Debug.Log("Incorrect match");
                     ScoreScript.scoreValue -= 1;
+                    Debug.Log(ScoreScript.scoreValue);
                 }
             }
 
