@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class GridGeneration : MonoBehaviour
 {
-    public string folderName;
+    public DummyControlUnit dummyControlUnit;
     // Start is called before the first frame update
     void Start()
     {
         var tileTemplate = GameObject.Find("tileTemplate");
         var gridLayoutGroup = GetComponent<GridLayoutGroup>();
-        object[] sprites = Resources.LoadAll(folderName, typeof(Sprite));
+
+        object[] sprites = Resources.LoadAll(dummyControlUnit.graphicsFolderName, typeof(Sprite));
 
         List<int> randomList = new List<int>();
 
