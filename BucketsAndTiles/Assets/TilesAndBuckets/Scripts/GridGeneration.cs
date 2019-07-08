@@ -11,8 +11,21 @@ public class GridGeneration : MonoBehaviour
     {
         var tileTemplate = GameObject.Find("tileTemplate");
         var gridLayoutGroup = GetComponent<GridLayoutGroup>();
+
         object[] sprites = Resources.LoadAll(dummyControlUnit.graphicsFolderName, typeof(Sprite));
-        for (int i = 0; i < sprites.Length; i++) {
+
+        List<int> randomList = new List<int>();
+
+        for (int i = 0; i<sprites.Length; i++)
+        {
+            randomList.Add(i);
+        }
+
+        randomList = Shuffle(randomList);
+
+        
+
+        foreach (int i in randomList) {
             GameObject newTile;
             newTile = Instantiate(tileTemplate);            
             newTile.transform.SetParent(gridLayoutGroup.transform);
@@ -31,4 +44,23 @@ public class GridGeneration : MonoBehaviour
     {
         
     }
+
+
+
+    private List<int> Shuffle(List<int> list)
+    {
+        var rng = new System.Random();
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            int value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+        return list;
+    }
+
+
 }
