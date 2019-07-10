@@ -61,6 +61,7 @@ public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 			if (OnItemDragStartEvent != null) {
 				OnItemDragStartEvent (this); // Notify all items about drag start for raycast disabling
 			}
+			this.GetComponent<Image>().enabled = false;
 		}
 	}
 
@@ -86,6 +87,9 @@ public class DragAndDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 	/// Resets all temporary conditions.
 	/// </summary>
 	private void ResetConditions () {
+
+		this.GetComponent<Image>().enabled = true;
+		
 		if (icon != null) {
 			Destroy (icon); // Destroy icon on item drop
 		}
