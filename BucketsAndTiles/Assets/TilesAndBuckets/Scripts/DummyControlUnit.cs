@@ -27,9 +27,6 @@ public class DummyControlUnit : MonoBehaviour {
     public string graphicsFolderName;
 
     void Start () {
-        var path1 = "Assets/TilesAndBuckets/data/" + fileName;
-
-        Object[] x1 = Resources.LoadAll ("another", typeof (TextAsset));
 
         TextAsset SourceFile = (TextAsset) Resources.Load ("CSVFiles/" + fileName, typeof (TextAsset));
         string textContent = SourceFile.text;
