@@ -3,33 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSceneManager : MonoBehaviour
-{
-    public void PlayGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+public class GameSceneManager : MonoBehaviour {
+    public void PlayGame () {
+        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
     }
-    public void QuitGame()
-    {
-        Debug.Log("QUIT GAME!");
-        Application.Quit();
+    public void QuitGame () {
+        Application.Quit ();
     }
 
-    public void BackToMainMenu()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    public void BackToMainMenu () {
+        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex - 1);
         ScoreScript.scoreValue = 0;
     }
 
-    public void DoneButton()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    public void DoneButton () {
+        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
 
     }
 
-    public void RestartButton()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+    public void RestartButton () {
+        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex - 2);
 
     }
 }
