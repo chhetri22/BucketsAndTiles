@@ -74,21 +74,34 @@ public class DummyControlUnit : MonoBehaviour {
             string destinationCellName = desc.destinationCell.ToString ().Split (' ') [0];
             string sourceCellName = desc.sourceCell.ToString ().Split (' ') [0];
 
+            bool correct = false;
+
             if (topicsToTilesMapping.ContainsKey (destinationCellName)) {
 
                 if (topicsToTilesMapping[destinationCellName].Contains (sourceCellName)) {
                     ScoreScript.scoreValue += int.Parse (bucketToScoreMapping[destinationCellName]);
+                    //only increase bucket fill with correct answer
+                    bucketToOccupancyMapping[destinationCellName] += 1;
+                    correct = true;
                 } else {
                     ScoreScript.scoreValue -= 1;
                 }
             }
 
+
             var destBucket = desc.destinationCell.gameObject;
             var gameObjectToDestroy = destBucket.transform.Find ("img_" + sourceCellName);
-            Destroy (gameObjectToDestroy.gameObject);
+            
+            if (correct) {
+                Destroy (gameObjectToDestroy.gameObject);
+            }
+            else{
+                //return tile to original position
+                desc.sourceCell.AddItem(desc.item);
+            }
+
 
             if (bucketToOccupancyMapping[destinationCellName] < 5) {
-                bucketToOccupancyMapping[destinationCellName] += 1;
                 //increase the level fill of the bucket
                 object[] sprites = Resources.LoadAll ("bucket/incremental", typeof (Sprite));
                 Image imageComponent = destBucket.transform.GetChild (0).GetComponent<Image> ();
