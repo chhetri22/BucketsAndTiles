@@ -12,6 +12,7 @@ public class GridGeneration : MonoBehaviour {
 
         object[] sprites = Resources.LoadAll (dummyControlUnit.graphicsFolderName, typeof (Sprite));
 
+        //random ordering of tiles
         List<int> randomList = new List<int> ();
 
         for (int i = 0; i < sprites.Length; i++) {
