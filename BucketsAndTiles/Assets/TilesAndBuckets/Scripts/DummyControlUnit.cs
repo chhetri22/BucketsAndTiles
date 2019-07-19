@@ -82,9 +82,11 @@ public class DummyControlUnit : MonoBehaviour {
                     ScoreScript.scoreValue += int.Parse (bucketToScoreMapping[destinationCellName]);
                     //only increase bucket fill with correct answer
                     bucketToOccupancyMapping[destinationCellName] += 1;
+                    FindObjectOfType<AudioManager> ().Play ("correct");
                     correct = true;
                 } else {
                     ScoreScript.scoreValue -= 1;
+                    FindObjectOfType<AudioManager> ().Play ("incorrect");
                 }
             }
 
