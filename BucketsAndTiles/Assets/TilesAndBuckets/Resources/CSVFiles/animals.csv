@@ -1,7 +1,7 @@
-,Points Per Bucket,camel,cat,cow,crow,deer,dog,dolphin,duck,elephant,fox,goat,hen,horse,lion,owl,parrot,peacock,pig,rabbit,rhino,sheep,tiger,yak
-Four-Legged,2,1,1,1,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1,1,1
-Mammal,4,1,1,1,0,1,1,1,0,1,1,1,0,1,1,0,0,0,1,1,1,1,1,1
-Can-Fly,2,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1,1,1,0,0,0,0,0,0
-Lays-Eggs,3,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1,1,1,0,0,0,0,0,0
-Eats-Flesh,3,0,1,0,1,0,1,1,0,0,1,0,0,0,1,1,1,1,1,0,0,0,1,0
-Eats-Grass,3,1,0,1,1,1,0,0,1,1,0,1,1,1,0,0,1,1,1,1,1,1,0,1
+,Points Per Bucket,camel,cat,cow,crow,deer,dog,dolphin,duck,elephant,fox,goat,hen,horse,lion,owl,parrot,peacock,pig,rabbit,rhino,sheep,tiger,yak,EMPTY
+Four-Legged,2,1,1,1,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1,1,1,0
+Mammal,4,1,1,1,0,1,1,1,0,1,1,1,0,1,1,0,0,0,1,1,1,1,1,1,0
+Can-Fly,2,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1,1,1,0,0,0,0,0,0,0
+Lays-Eggs,3,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1,1,1,0,0,0,0,0,0,0
+Eats-Flesh,3,0,1,0,1,0,1,1,0,0,1,0,0,0,1,1,1,1,1,0,0,0,1,0,0
+Eats-Grass,3,1,0,1,1,1,0,0,1,1,0,1,1,1,0,0,1,1,1,1,1,1,0,1,0
